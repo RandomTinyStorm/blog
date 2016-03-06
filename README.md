@@ -1,2 +1,3 @@
 # blog
-first project
+This is the first project, blog of us
+
