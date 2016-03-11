@@ -1,0 +1,22 @@
+<h1></h1>
+<%= link_to 'My Blog', controller: 'articles' ,action: 'index' %>
+<%= link_to 'New article', new_article_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+<% @articles.each do |article|%>
+	<tr>
+		<td>
+			<%= article.title%><br>
+		</td>
+		<td>
+			<%= article.text%><br>
+		</td>
+		<td>
+			<%= link_to 'Edit', edit_article_path(article) %>
+		</td>
+	</tr>
+<% end%>
+</table>
