@@ -1,11 +1,14 @@
 class ArticlesController < ApplicationController
   def new
-	
+	@article = Article.new
   end
   def create
 	@article = Article.new(article_params)
-    @article.save
-    redirect_to @article
+    if @article.save
+      redirect_to @article
+	else
+	  render 'new'
+	end
   end
 
   def show
@@ -16,9 +19,28 @@ class ArticlesController < ApplicationController
 	@articles = Article.all
   end
 
+  def edit
+	@article = Article.find(params[:id])
+
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_nonblog_params)
+		redirect_to @article
+	else
+		render 'edit'
+	end
+  end
+
   private
   def article_params
     params.require(:article_blog).permit(:title,:text)
+	
+  end
+
+  def article_nonblog_params
+    params.require(:article).permit(:title,:text)
 	
   end
 end
